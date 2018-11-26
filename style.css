@@ -1,0 +1,29 @@
+.wrapper-nav-slider {
+    display: none;
+    margin-top: 1em;
+}
+
+.wrapper-nav-slider button {
+    padding: 1em;
+    border-radius: 10px;
+    margin-right: 1em;
+}
+
+.wrapper-slider {
+    width: 800px;
+    margin: 100px auto 0;
+}
+
+.slider {
+    overflow: hidden;
+    height: 600px;
+}
+
+.slider ul {
+    width: 10000px;
+    list-style: none;
+}
+
+.slider li {
+    float: left;
+}
