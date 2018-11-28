@@ -16,9 +16,8 @@
             current = imgLength;
             loc = totalImgsWidth - imgWidth;
             direction = 'next';
-        } else if (current-1 === imgLength) {
+        } else if (current - 1 === imgLength) {
             current = 1;
-            direction = 'prev';
             loc=0;
         }
         transition(sliderUl, loc, direction);
@@ -32,7 +31,7 @@
         }
 
         container.animate({
-            'margin-left': init? (init + loc): init
+            'margin-left': init? (init + loc): loc
         })
     }
 })(jQuery)
