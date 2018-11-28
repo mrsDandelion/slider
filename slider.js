@@ -14,9 +14,12 @@
 
         if(current === 0) {
             current = imgLength;
+            loc = totalImgsWidth - imgWidth;
             direction = 'next';
         } else if (current-1 === imgLength) {
             current = 1;
+            direction = 'prev';
+            loc=0;
         }
         transition(sliderUl, loc, direction);
     });
