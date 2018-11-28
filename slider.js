@@ -6,5 +6,7 @@
     let current = 1;
     const totalImgsWidth = imgWidth * imgLength;
 
-    $('.wrapper-nav-slider').show();
+    $('.wrapper-nav-slider').show().find('button').on('click',function(){
+
+    });
 })()
