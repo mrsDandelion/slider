@@ -23,5 +23,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="slider.js"></script>
+<script>
+    (function(){
+        const container = $('div.slider').css('overflow', 'hidden').children('ul');
+
+        const slider = new Slider ( container, $('.wrapper-nav-slider') );
+        slider.nav.show().find('button').on('click', function(){
+            slider.setCurrent( $(this).data('dir'));
+            slider.transition();
+        })
+    })()
+</script>
 </body>
 </html>
