@@ -30,4 +30,5 @@
 
 .slider li {
     float: left;
+    opacity: 0;
 }
