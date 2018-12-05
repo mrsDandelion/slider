@@ -19,6 +19,12 @@
         <button data-dir="prev">Previous</button>
         <button data-dir="next">Next</button>
     </div>
+    <div class="wrapper-select-animation">
+        <select>
+            <option value="opacity" selected>Opacity</option>
+            <option value="linear">Linear</option>
+        </select>
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -46,7 +52,10 @@
             }
         });
 
-        container.find('li:first-of-type').css('opacity', 1);
+        $('.wrapper-select-animation').find('select').on('change', function() {
+            const typeOfAnimation = $('.wrapper-select-animation').find('select').val();
+            slider.setTypeOfAnimation(typeOfAnimation);
+        })
     })()
 </script>
 </body>
