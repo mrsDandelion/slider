@@ -39,7 +39,7 @@
             slider.transition();
         })
 
-        $(document).keydown(function(event){
+        $(document).on('keydown', function(event){
             const KEY_LEFT = 37;
             const KEY_RIGHT = 39;
             if (event.keyCode == KEY_LEFT){
