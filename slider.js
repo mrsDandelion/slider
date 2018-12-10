@@ -1,7 +1,8 @@
 class Slider{
-    constructor (container, nav){
+    constructor (container, nav, select){
         this.container = container;
         this.nav = nav.show();
+        this.select = select.show();
         this.imgs = this.container.find('img');
         this.imgWidth = this.imgs[0].width;
         this.imgLength = this.imgs.length;
@@ -9,20 +10,21 @@ class Slider{
         this.previous = 0;
         this.typeOfAnimation = 'opacity';
     }
+
     animationOpacity(coords) {
-        this.container.find('li').css('opacity', 0);
-        this.container.find(`li:nth-of-type(${this.current})`).css('opacity', 1);
         this.container.css('margin-left', coords || -(this.current * this.imgWidth));
-        this.container.find(`li:nth-of-type(${this.previous + 1})`).css('opacity', 0)
+        this.container.find(`li:nth-of-type(${this.current + 1})`).css('opacity', 0);
         this.container.find(`li:nth-of-type(${this.current + 1})`).animate({
             'opacity': 1
         }, 1000)
     }
+
     animationlinear(coords) {
         this.container.animate({
             'margin-left': coords || -(this.current * this.imgWidth)
         })
     }
+
     transition() {
         if(this.typeOfAnimation === 'opacity') {
             this.animationOpacity();
@@ -31,6 +33,7 @@ class Slider{
             this.animationlinear();
         }
     }
+
     setCurrent( dir ){
         this.previous = this.current;
         let pos = this.current;
@@ -38,7 +41,38 @@ class Slider{
         this.current = (pos < 0)? this.imgLength - 1 : pos % this.imgLength;
         return pos;
     }
-    setTypeOfAnimation(typeOfAnimation) {
-        this.typeOfAnimation = typeOfAnimation;
+
+    addEventButton(slider){
+        this.nav.find('button').on('click', function(){
+            slider.setCurrent($(this).data('dir'));
+            slider.transition();
+        })
+    }
+
+    addEventKey(){
+        $(document).on('keydown', function(event){
+            const KEY_LEFT = 37;
+            const KEY_RIGHT = 39;
+            if (event.keyCode == KEY_LEFT){
+                this.setCurrent('prev');
+                this.transition();
+            }
+            if (event.keyCode == KEY_RIGHT){
+                this.setCurrent('next');
+                this.transition();
+            }
+        }.bind(this));
+    }
+
+    addEventSelect(){
+        this.select.find('select').on('change', function() {
+            this.typeOfAnimation = this.select.find('select').val();
+        }.bind(this))
+    }
+
+    init(slider){
+        this.addEventButton(slider);
+        this.addEventKey();
+        this.addEventSelect();
     }
 }

@@ -33,29 +33,9 @@
     (function(){
         const container = $('div.slider').css('overflow', 'hidden').children('ul');
 
-        const slider = new Slider ( container, $('.wrapper-nav-slider') );
-        slider.nav.show().find('button').on('click', function(){
-            slider.setCurrent( $(this).data('dir'));
-            slider.transition();
-        })
+        const slider = new Slider ( container, $('.wrapper-nav-slider'), $('.wrapper-select-animation') );
 
-        $(document).on('keydown', function(event){
-            const KEY_LEFT = 37;
-            const KEY_RIGHT = 39;
-            if (event.keyCode == KEY_LEFT){
-                slider.setCurrent('prev');
-                slider.transition();
-            }
-            if (event.keyCode == KEY_RIGHT){
-                slider.setCurrent('next');
-                slider.transition();
-            }
-        });
-
-        $('.wrapper-select-animation').find('select').on('change', function() {
-            const typeOfAnimation = $('.wrapper-select-animation').find('select').val();
-            slider.setTypeOfAnimation(typeOfAnimation);
-        })
+        slider.init(slider);
     })()
 </script>
 </body>
