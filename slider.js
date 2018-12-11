@@ -1,5 +1,5 @@
 class Slider{
-    constructor (container, nav, select){
+    constructor ({ container, nav, select }){
         this.container = container;
         this.nav = nav.show();
         this.select = select.show();

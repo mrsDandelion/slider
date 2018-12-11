@@ -34,8 +34,13 @@
     (function(){
         const container = $('div.slider').css('overflow', 'hidden').children('ul');
 
-        const slider = new Slider ( container, $('.wrapper-nav-slider'), $('.wrapper-select-animation') );
+        const settings = {
+            container: container,
+            nav: $('.wrapper-nav-slider'),
+            select: $('.wrapper-select-animation')
+        }
 
+        const slider = new Slider ( settings );
         slider.init(slider);
     })()
 </script>
