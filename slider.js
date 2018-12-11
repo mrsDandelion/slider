@@ -12,7 +12,7 @@ class Slider{
     }
 
     animationOpacity(coords) {
-        this.container.css('margin-left', coords || -(this.current * this.imgWidth));
+        this.container.css('margin-left', -(this.current * this.imgWidth));
         this.container.find(`li:nth-of-type(${this.current + 1})`).css('opacity', 0);
         this.container.find(`li:nth-of-type(${this.current + 1})`).animate({
             'opacity': 1
@@ -21,7 +21,7 @@ class Slider{
 
     animationlinear(coords) {
         this.container.animate({
-            'margin-left': coords || -(this.current * this.imgWidth)
+            'margin-left': -(this.current * this.imgWidth)
         })
     }
 
@@ -32,6 +32,22 @@ class Slider{
         if(this.typeOfAnimation === 'linear') {
             this.animationlinear();
         }
+        if(this.typeOfAnimation === 'zoom') {
+            this.animationZoom();
+        }
+    }
+
+    animationZoom(){
+        this.container.css('margin-left', -(this.current * this.imgWidth));
+
+        this.container.find(`li:nth-of-type(${this.current + 1}) img`).css({
+        width: 0,
+        height: 0
+        });
+        this.container.find(`li:nth-of-type(${this.current + 1}) img`).animate({
+            width: '100%',
+            height: '100%'
+        }, 1000)
     }
 
     setCurrent( dir ){

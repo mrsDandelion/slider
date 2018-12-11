@@ -30,6 +30,8 @@
 }
 
 .slider li {
+    display: flex;
+    justify-content: center;
     float: left;
 }
 
