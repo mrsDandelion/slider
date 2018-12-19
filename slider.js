@@ -58,36 +58,39 @@ class Slider{
         return pos;
     }
 
-    addEventButton(slider){
-        this.nav.find('button').on('click', function(){
-            slider.setCurrent($(this).data('dir'));
-            slider.transition();
+    addEventButton(){
+        const self = this;
+        self.nav.find('button').on('click', function(){
+            self.setCurrent($(this).data('dir'));
+            self.transition();
         })
     }
 
     addEventKey(){
+        const self = this;
         $(document).on('keydown', function(event){
             const KEY_LEFT = 37;
             const KEY_RIGHT = 39;
             if (event.keyCode == KEY_LEFT){
-                this.setCurrent('prev');
-                this.transition();
+                self.setCurrent('prev');
+                self.transition();
             }
             if (event.keyCode == KEY_RIGHT){
-                this.setCurrent('next');
-                this.transition();
+                self.setCurrent('next');
+                self.transition();
             }
-        }.bind(this));
+        })
     }
 
     addEventSelect(){
-        this.select.find('select').on('change', function() {
-            this.typeOfAnimation = this.select.find('select').val();
-        }.bind(this))
+        const self = this;
+        self.select.find('select').on('change', function() {
+            self.typeOfAnimation = self.select.find('select').val();
+        })
     }
 
-    init(slider){
-        this.addEventButton(slider);
+    init(){
+        this.addEventButton();
         this.addEventKey();
         this.addEventSelect();
     }
